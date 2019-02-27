@@ -10,8 +10,12 @@
   "author": "Amjad Hasnawi",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "concurrently": "^4.1.0",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "jquery": "^3.3.1",
+    "mongoose": "^5.4.16",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
