@@ -31,3 +31,40 @@
     transform: rotate(360deg);
   }
 }
+
+.gridCenter {
+  width: 95%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px
+}
+
+.gridLeft {
+  float: right;
+  clear: right;
+}
+
+@media only screen and (min-width: 100px) {
+  .col-q-1 {width: 8.33%;}
+  .col-q-2 {width: 16.66%;}
+  .col-q-3 {width: 25%;}
+  .col-q-4 {width: 33.33%;}
+  .col-q-5 {width: 41.66%;}
+  .col-q-6 {width: 50%;}
+  .col-q-7 {width: 58.33%;}
+  .col-q-8 {width: 66.66%;}
+  .col-q-9 {width: 75%;}
+  .col-q-10 {width: 83.33%;}
+  .col-q-11 {width: 91.66%;}
+  .col-q-12 {width: 100%;}
+}
+
+.backgroundimage {
+  background-image: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png'); 
+  background-repeat: no-repeat;
+  -webkit-background-size: 30px;
+  -moz-background-size: 30px;
+  -o-background-size: 30px;
+  background-size: 30px;
+}
