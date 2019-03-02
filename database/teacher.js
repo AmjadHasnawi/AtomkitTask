@@ -15,24 +15,8 @@ const TeacherSchema = new Schema({
 		type: String,
 		required: false
 	},
-	password: {
-		type: String,
-		required: false
-	},
-	imageURL: {
-		type: String,
-		required: false
-	},
-	teacherMajor: {
-		type: String,
-		required: false
-	},
 	info: {
 		type: String,
-		required: false
-	},
-	price: {
-		type: Number,
 		required: false
 	},
 	image: {
@@ -40,21 +24,15 @@ const TeacherSchema = new Schema({
 		required: false,
 		default:'https://www.eigenheimreal.com/avatar_mann.png'
 	},
-	rating:{
-		type:Number,
-		required: false,
-		default:1
-	},
-	rateCount:{
-		type:Number,
-		required:false,
-		default:1
-	},
-	students: [
+	courses: [
 		{
-			type: mongoose.Schema.Types.ObjectId, ref: 'student' 
+			type: mongoose.Schema.Types.ObjectId, ref: 'course' 
 		}
-	]
+	],
+	date: {
+		type: Date,
+		default: Date.now
+	}
 });
 
 
