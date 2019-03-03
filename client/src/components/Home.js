@@ -85,15 +85,15 @@ class Home extends Component {
               <p style={{display:"inline", margin:"5px", cursor:"pointer"}} onClick={() =>{this.filter("علمي")}} >علمي</p>
               <p style={{display:"inline", margin:"5px", cursor:"pointer"}} onClick={() =>{this.filter("أدبي")}} >أدبي</p>
               <p style={{display:"inline", margin:"5px", cursor:"pointer"}} onClick={() =>{this.filter("صناعي")}} >صناعي</p>
-              <p style={{display:"inline", margin:"5px"}} >مواد تخصص : </p>
+              <p style={{display:"inline", margin:"5px 30px 5px 5px"}} >مواد تخصص : </p>
               <select style={{width:"5em", borderRadius:"20px", fontSize:"0.8em"}}>
                 <option value="all">الجميع</option>
               </select>
-              <p style={{display:"inline", margin:"5px"}} > مواد مشتركة : </p>
+              <p style={{display:"inline", margin:"5px 30px 5px 5px"}} > مواد مشتركة : </p>
               <select style={{width:"5em", borderRadius:"20px", fontSize:"0.8em"}}>
                 <option value="all">الجميع</option>
               </select>
-              <p style={{display:"inline", margin:"5px"}} > السعر : </p>
+              <p style={{display:"inline", margin:"5px 30px 5px 5px"}} > السعر : </p>
               <select style={{width:"5em", borderRadius:"20px", fontSize:"0.9em"}} onChange={this.incDec}>
                 <option value="all">الجميع</option>
                 <option value="increment">تصاعدي</option>
@@ -104,7 +104,7 @@ class Home extends Component {
             {this.state.clone.map((course) => {
               if (this.state.category === "الجميع") {
                 return (
-                  <div id="child" className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                  <div id="child" className="col-xl-3 col-lg-3 col-md-4 col-sm-12">
                     <div  className="card gridCenter">
                       <img className="card-img-top" src={course.image} alt="Card image" style={{width:"100%"}} />
                       <div className="card-body">
@@ -147,6 +147,7 @@ class Home extends Component {
             })}
           </div>
             <div style={{cursor:"pointer"}} dir="rtl">
+            <h2>اضافات</h2>
             <p  style={{display:"inline", margin:"5px", fontSize:"20px", float:"right"}} onClick={this.openNav}>المواد المطروحة</p>
             <i style={{float:"right", margin:"15px 5px 0px 0px", fontSize:"17px", color:"darkblue"}} className="fas fa-chevron-circle-left" onClick={this.openNav}></i>
             <Link to="/createCourse" style={{margin:"5px", fontSize:"20px", float:"right", clear:"right", color:"black", textDecoration:"none"}}>اضافة دورة جديدة</Link>
