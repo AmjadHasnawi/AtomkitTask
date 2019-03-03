@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
-const keys = require('./keys.js');
+const keys = require('./key.js');
 const endpoints = require('./endpoints.js')
 
 
