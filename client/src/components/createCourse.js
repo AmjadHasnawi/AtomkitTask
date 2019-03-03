@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect, Link } from 'react-router-dom';
+import $ from 'jquery';
 import {storage} from '../firebase';
 import Swal from 'sweetalert2';
 import Avatar from '@material-ui/core/Avatar';
@@ -120,7 +121,20 @@ class Signin extends Component {
   
       axios.post('/endpoints/createCourse', createCourse)
       .then(response => {
-       console.log(response.data);
+        $('#firstname').val('');
+        $('#lastname').val('');
+        $('#email').val('');
+        $('#field').val('');
+        $('#coursename').val('');
+        $('#subjectname').val('');
+        $('#price').val('');
+        $('#numberofhours').val('');
+        $('#upload').val([]);
+        Swal.fire(
+          '!مبروك',
+          '!تم انشاء دورة جديدة بنجاح',
+          'success'
+      )
       })
     }  
   }
@@ -195,7 +209,7 @@ class Signin extends Component {
                   <Input name="numberofhours" dir="rtl" type="numberofhours" id="numberofhours" autoComplete="numberofhours" onChange={this.handleChange}/>
                 </FormControl>
                 <FormControl margin="normal" required fullWidth>
-                  نرجوا إرفاق الصورةالشخصية مع الطلب<input type="file" style={{margin:"10px 10px 10px 0px"}} onChange={this.handleImage} />
+                  نرجوا إرفاق الصورةالشخصية مع الطلب<input id="upload" type="file" style={{margin:"10px 10px 10px 0px"}} onChange={this.handleImage} />
                   <button className="btn btn-primary" onClick={this.handleUpload}>تحميل</button>
                 </FormControl>
                 <Button

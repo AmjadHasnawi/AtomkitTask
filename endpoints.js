@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/getCourses', (req, res) => {
-  Course.find({}).then((courses) => {
+  Course.find({}).sort({date: -1}).then((courses) => {
     res.send(courses);
   })
 })
@@ -66,7 +66,7 @@ router.post('/createCourse', (req, res) => {
   });
 })
 
-router.get('/getStudents', (req, res) => {
+router.get('/getStudent', (req, res) => {
   Student.find({}).then((students) => {
     res.send(students);
   })

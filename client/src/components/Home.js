@@ -12,8 +12,10 @@ class Home extends Component {
     super(props);
     this.state = {
       courses : [],
+      clone: [],
       subjects: [],
-      category: "الجميع"
+      category: "الجميع",
+      incDec: [],
     }
   }
 
@@ -21,7 +23,8 @@ class Home extends Component {
     axios.get('/endpoints/getCourses').
       then((response) => {
         this.setState({
-          courses : response.data
+          courses : response.data,
+          clone: response.data
         })
       })
       .catch((err) => {
@@ -53,29 +56,56 @@ class Home extends Component {
     document.getElementById("mySidenav").style.width = "0";
   }
 
+  incDec = (e) => {
+    let incDec;
+    if (e.target.value === "increment") {
+      this.state.courses.sort((a, b) => {
+        return a.price - b.price;
+      })
+    } else if (e.target.value === "decrement") {
+      this.state.courses.sort((a, b) => {
+        return b.price - a.price;
+      })
+    } 
+    this.setState({
+      clone : this.state.courses
+    })
+  }
+
   render() {
     return (
       <div>
      
       <div style={{marginBottom:"3px"}}>
         <div className="row">
-          <div className="col-s-9 col-md-9 col-lg-9 col-xl-9" dir="rtl">
-            <div style={{boxShadow:"0.5px 0.5px 0.5px 0.5px lightgrey", margin:"10px", padding:"7px", borderRadius:"5px", fontSize:"100%"}}>
+          <div className="col-sm-12 col-md-9 col-lg-9 col-xl-9" dir="rtl">
+            <div style={{boxShadow:"0.5px 0.5px 0.5px 0.5px lightgrey", margin:"20px", padding:"7px", borderRadius:"5px", fontSize:"100%"}}>
               <p style={{display:"inline", margin:"5px"}}>بحث و تصنيف:</p>
               <p style={{display:"inline", margin:"5px", cursor:"pointer"}} onClick={() =>{this.filter("الجميع")}} >الجميع</p>
               <p style={{display:"inline", margin:"5px", cursor:"pointer"}} onClick={() =>{this.filter("علمي")}} >علمي</p>
               <p style={{display:"inline", margin:"5px", cursor:"pointer"}} onClick={() =>{this.filter("أدبي")}} >أدبي</p>
               <p style={{display:"inline", margin:"5px", cursor:"pointer"}} onClick={() =>{this.filter("صناعي")}} >صناعي</p>
-              {/* <p style={{display:"inline", margin:"5px"}} >مواد تخصص : </p>
-              <p style={{display:"inline", margin:"5px"}} >مواد مشتركة : </p>
-              <p style={{display:"inline", margin:"5px"}} >السعر : </p> */}
+              <p style={{display:"inline", margin:"5px"}} >مواد تخصص : </p>
+              <select style={{width:"5em", borderRadius:"20px", fontSize:"0.8em"}}>
+                <option value="all">الجميع</option>
+              </select>
+              <p style={{display:"inline", margin:"5px"}} > مواد مشتركة : </p>
+              <select style={{width:"5em", borderRadius:"20px", fontSize:"0.8em"}}>
+                <option value="all">الجميع</option>
+              </select>
+              <p style={{display:"inline", margin:"5px"}} > السعر : </p>
+              <select style={{width:"5em", borderRadius:"20px", fontSize:"0.9em"}} onChange={this.incDec}>
+                <option value="all">الجميع</option>
+                <option value="increment">تصاعدي</option>
+                <option value="decrement">تنازلي</option>
+              </select>
             </div>
-            <div className="row">
-            {this.state.courses.map((course) => {
+            <div id="myDIV" className="row">
+            {this.state.clone.map((course) => {
               if (this.state.category === "الجميع") {
                 return (
-                  <div className="col-xl-3 col-lg-3 col-md-4 col-sm-12">
-                    <div className="card gridCenter">
+                  <div id="child" className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                    <div  className="card gridCenter">
                       <img className="card-img-top" src={course.image} alt="Card image" style={{width:"100%"}} />
                       <div className="card-body">
                         <p className="card-title"> الأستاذ:{course.firstname}{course.lastname}</p>
@@ -120,7 +150,7 @@ class Home extends Component {
             <p  style={{display:"inline", margin:"5px", fontSize:"20px", float:"right"}} onClick={this.openNav}>المواد المطروحة</p>
             <i style={{float:"right", margin:"15px 5px 0px 0px", fontSize:"17px", color:"darkblue"}} className="fas fa-chevron-circle-left" onClick={this.openNav}></i>
             <Link to="/createCourse" style={{margin:"5px", fontSize:"20px", float:"right", clear:"right", color:"black", textDecoration:"none"}}>اضافة دورة جديدة</Link>
-            <Link to="/createCourse"><i style={{float:"right", margin:"15px 5px 0px 0px", fontSize:"17px", color:"darkblue"}} class="fas fa-chevron-circle-left"></i></Link>
+            <Link to="/createCourse"><i style={{float:"right", margin:"15px 5px 0px 0px", fontSize:"17px", color:"darkblue"}} className="fas fa-chevron-circle-left"></i></Link>
             </div>
           </div>
         </div>
